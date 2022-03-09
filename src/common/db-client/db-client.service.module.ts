@@ -1,6 +1,6 @@
 import { Global, Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { DbClientService } from './dbClient.service';
+import { DbClientService } from './db-client.service';
 
 @Global()
 @Module({
@@ -8,4 +8,4 @@ import { DbClientService } from './dbClient.service';
   providers: [DbClientService],
   exports: [DbClientService],
 })
-export class DbClientServicesModule {}
+export class DbClientServiceModule {}

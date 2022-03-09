@@ -3,6 +3,8 @@ import { PriceService } from './service/price.service';
 import { CalculatePriceRequestDto } from './dto/request/calculate-price-request.dto';
 import { CalculatePriceResponseDto } from './dto/response/calculate-price-response.dto';
 import {ApiBadRequestResponse, ApiOperation, ApiResponse, ApiTags} from '@nestjs/swagger';
+import {UseFilters} from "@nestjs/common/decorators";
+import {DatabaseExceptionFilter, WrongDatesExceptionFilter} from "../../common/filters";
 
 @ApiTags('price')
 @Controller('price')
@@ -12,6 +14,7 @@ export class PriceController {
   @ApiOperation({ summary: 'Calculate price of rental' })
   @ApiResponse({ status: 201, description: 'Get calculation price of rental auto', type: CalculatePriceResponseDto })
   @ApiBadRequestResponse({description: 'Something wrong'})
+  @UseFilters(new WrongDatesExceptionFilter(), new DatabaseExceptionFilter())
   @Post()
   public async calculatePrice( @Body() priceDto: CalculatePriceRequestDto ): Promise<CalculatePriceResponseDto> {
     return await this.priceService.calculatePrice(priceDto);

@@ -2,10 +2,10 @@ import { Module } from '@nestjs/common';
 import { CarController } from 'src/modules/cars/car.controller';
 import { CarService } from './service/car.service';
 import { CarRepository } from './repository/car.repository';
-import { DbClientServicesModule } from 'src/common/db-client/dbClient.services.module';
+import { DbClientServiceModule } from 'src/common/db-client/db-client.service.module';
 
 @Module({
-  imports: [DbClientServicesModule],
+  imports: [DbClientServiceModule],
   controllers: [CarController],
   providers: [CarService, CarRepository],
 })

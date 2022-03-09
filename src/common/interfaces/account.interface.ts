@@ -1,4 +1,4 @@
-export interface IAccount {
-    day_of_week: number,
+export interface Account {
+    dayOfWeek: number,
     percent: number
 }

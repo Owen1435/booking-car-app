@@ -5,11 +5,11 @@ import {
 } from 'class-validator';
 
 @ValidatorConstraint({ name: 'isWeekend', async: false })
-export class IsWeekend implements ValidatorConstraintInterface {
+export class IsNotWeekend implements ValidatorConstraintInterface {
   validate(propertyValue: string) {
     const date = new Date(propertyValue);
-    const weekendIndex = [0, 1]
-    return weekendIndex.includes(date.getDay());
+    const weekendIndex = [0, 6]
+    return !weekendIndex.includes(date.getDay());
   }
 
   defaultMessage(args: ValidationArguments): string {

@@ -2,12 +2,11 @@ import { Module } from '@nestjs/common';
 import { BookingController } from './booking.controller';
 import { BookingService } from './service/booking.service';
 import { BookingRepository } from './repository/booking.repository';
-import { DbClientServicesModule } from '../../common/db-client/dbClient.services.module';
-import { ValidateBookService } from './service/validate-book.service';
+import { DbClientServiceModule } from '../../common/db-client/db-client.service.module';
 
 @Module({
-  imports: [DbClientServicesModule],
+  imports: [DbClientServiceModule],
   controllers: [BookingController],
-  providers: [BookingService, BookingRepository, ValidateBookService],
+  providers: [BookingService, BookingRepository],
 })
 export class BookingModule {}

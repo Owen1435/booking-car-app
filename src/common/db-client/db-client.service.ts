@@ -4,7 +4,7 @@ import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class DbClientService {
-  client: Client;
+  private readonly client: Client;
 
   constructor(private readonly configService: ConfigService) {
     this.client = new Client({

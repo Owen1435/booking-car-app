@@ -1,7 +1,7 @@
 import {ApiProperty} from "@nestjs/swagger";
-import {IsInt, IsNotEmpty, IsPositive, Validate} from "class-validator";
-import {IsBeforeDateConstraint, IsValidDateConstraint} from "src/common/constraint";
-import { IsWeekend } from "src/common/constraint/isWeekend";
+import {IsDateString, IsInt, IsNotEmpty, IsPositive, Validate} from "class-validator";
+import {IsBeforeDateConstraint} from "src/common/constraint";
+import { IsNotWeekend } from "src/common/constraint/isNotWeekend";
 
 export class BookCarRequestDto {
   @ApiProperty({
@@ -10,8 +10,8 @@ export class BookCarRequestDto {
   })
   @IsNotEmpty()
   @Validate(IsBeforeDateConstraint, ['endDate'])
-  @Validate(IsValidDateConstraint)
-  @Validate(IsWeekend)
+  @IsDateString()
+  @Validate(IsNotWeekend)
   startDate: string;
 
   @ApiProperty({
@@ -19,8 +19,8 @@ export class BookCarRequestDto {
     example: "2021-08-17"
   })
   @IsNotEmpty()
-  @Validate(IsValidDateConstraint)
-  @Validate(IsWeekend)
+  @IsDateString()
+  @Validate(IsNotWeekend)
   endDate: string;
 
   @ApiProperty({

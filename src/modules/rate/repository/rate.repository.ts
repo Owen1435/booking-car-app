@@ -1,27 +1,22 @@
 import { Injectable } from '@nestjs/common';
-import { Client } from 'pg';
-import { DbClientService } from 'src/common/db-client/dbClient.service';
+import { DbClientService } from 'src/common/db-client/db-client.service';
 import { RateEntity } from '../../../common/entities';
 import { DatabaseException } from 'src/common/exeptions';
 
 @Injectable()
 export class RateRepository {
-  client: Client;
-
-  constructor(private readonly dbService: DbClientService) {
-    this.client = this.dbService.getClient();
-  }
+  constructor(private readonly db: DbClientService) {}
 
   public async getRateById(rateId: number): Promise<RateEntity> {
     try {
-      const res = await this.client.query(`
+      const res = await this.db.getClient().query(`
         SELECT * 
         FROM rate 
         WHERE id=${rateId}
       `);
       return res.rows[0];
     } catch (err) {
-      throw new DatabaseException();
+      throw new DatabaseException(err.message);
     }
   }
 }

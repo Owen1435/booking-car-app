@@ -1,32 +1,27 @@
 import { Injectable } from '@nestjs/common';
-import { Client } from 'pg';
-import { DbClientService } from 'src/common/db-client/dbClient.service';
+import { DbClientService } from 'src/common/db-client/db-client.service';
 import { DatabaseException } from 'src/common/exeptions/database.exception';
 import { BookCarRequestDto } from '../dto/request/book-car-request.dto';
 import { CarBookingEntity } from '../../../common/entities';
 
 @Injectable()
 export class BookingRepository {
-  client: Client;
-
-  constructor(private readonly dbService: DbClientService) {
-    this.client = this.dbService.getClient();
-  }
+  constructor(private readonly db: DbClientService) {}
 
   public async bookCar(booking: BookCarRequestDto): Promise<void> {
     try {
-      await this.client.query(`
-        INSERT INTO car_booking(auto_id, start_date, end_date)
-        VALUES (${booking.autoId}, '${booking.startDate}', '${booking.endDate}')
+      await this.db.getClient().query(`
+        INSERT INTO car_booking(auto_id, rate_id, start_date, end_date)
+        VALUES (${booking.autoId}, ${booking.rateId}, '${booking.startDate}', '${booking.endDate}')
       `);
     } catch (err) {
-      throw new DatabaseException();
+      throw new DatabaseException(err.message);
     }
   }
 
   public async getLastBookingByAutoId( autoId: number ): Promise<CarBookingEntity> {
     try {
-      const res = await this.client.query(`
+      const res = await this.db.getClient().query(`
         SELECT end_date
         FROM car_booking
 		WHERE auto_id = ${autoId}
@@ -35,7 +30,7 @@ export class BookingRepository {
 	  `);
       return res.rows[0];
     } catch (err) {
-      throw new DatabaseException();
+      throw new DatabaseException(err.message);
     }
   }
 }

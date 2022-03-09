@@ -23,7 +23,7 @@ export class GetCarResponseDto {
     description: 'License on car',
     example: 'WAUDF78E86A074839'
   })
-  license_plate: string;
+  licensePlate: string;
 
   @ApiProperty({
     description: 'ID number of car',

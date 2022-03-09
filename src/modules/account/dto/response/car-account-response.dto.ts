@@ -1,6 +1,6 @@
 import {ApiProperty} from "@nestjs/swagger";
 
-export class AccountForEachCarResponseDto {
+export class CarAccountResponseDto {
   @ApiProperty({
     description: 'Percent loud of car by day',
     example: '15.3'
@@ -8,7 +8,7 @@ export class AccountForEachCarResponseDto {
   percent: number;
 
   @ApiProperty({
-    description: 'Percent loud of car by day',
+    description: 'Day of week',
     example: 'Monday'
   })
   day: string;
