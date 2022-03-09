@@ -1,4 +1,4 @@
-import { Client } from 'pg';
+import {Client, QueryResult} from 'pg';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 
@@ -18,7 +18,27 @@ export class DbClientService {
     this.client.connect().then(undefined);
   }
 
-  public getClient(): Client {
-    return this.client;
+  /** получение первой строки */
+  async row<T = unknown>(query: string): Promise<T | null> {
+    const queryResult = await this.client.query(query);
+    if (queryResult?.rows) {
+      return queryResult.rows[0] ?? null;
+    } else {
+      throw new Error('Bad query. Empty result.');
+    }
+  }
+
+  /** получение значения строк */
+  async rows<T = unknown>(query: string): Promise<Array<T>> {
+    const queryResult = await this.client.query(query);
+    if (queryResult?.rows) {
+      return queryResult.rows ?? [];
+    } else {
+      throw new Error('Bad query. Empty result.');
+    }
+  }
+
+  async sql(query: string): Promise<QueryResult> {
+    return await this.client.query(query);
   }
 }

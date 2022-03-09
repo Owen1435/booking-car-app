@@ -9,12 +9,11 @@ export class RateRepository {
 
   public async getRateById(rateId: number): Promise<RateEntity> {
     try {
-      const res = await this.db.getClient().query(`
+      return await this.db.row(`
         SELECT * 
         FROM rate 
         WHERE id=${rateId}
       `);
-      return res.rows[0];
     } catch (err) {
       throw new DatabaseException(err.message);
     }

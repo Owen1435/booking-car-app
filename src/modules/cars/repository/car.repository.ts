@@ -9,12 +9,11 @@ export class CarRepository {
 
   async getCarById(carId: number): Promise<CarEntity> {
     try {
-      const result = await this.db.getClient().query(`
+      return await this.db.row<CarEntity>(`
         SELECT *
         FROM cars
         WHERE id = ${carId}
       `);
-      return result.rows[0];
     } catch (err) {
       throw new DatabaseException(err.message);
     }
@@ -22,11 +21,10 @@ export class CarRepository {
 
   async getAllCars(): Promise<CarEntity[]> {
     try {
-      const result = await this.db.getClient().query(`
-        SELECT id, brand, model, license_plate as licensePlate, vin
+      return await this.db.rows<CarEntity>(`
+        SELECT *
         FROM cars
       `);
-      return result.rows;
     } catch (err) {
       throw new DatabaseException(err.message);
     }

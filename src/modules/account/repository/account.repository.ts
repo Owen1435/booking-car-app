@@ -9,7 +9,7 @@ export class AccountRepository {
 
   async getAccountForCar(autoId: number): Promise<Account[]> {
     try {
-      const result = await this.db.getClient().query(`
+      return await this.db.rows(`
         SELECT q1.day_of_week as "dayOfWeek", ((q1.count * 1.0) / (q2.total_count * 1.0)) * 100 as percent
         FROM
           (SELECT EXTRACT(ISODOW FROM day) as day_of_week, count(day) as count
@@ -21,7 +21,6 @@ export class AccountRepository {
           WHERE "autoId" = ${autoId}) as q2
         ORDER BY q1.day_of_week
       `);
-      return result.rows;
     } catch (err) {
       throw new DatabaseException();
     }
@@ -29,7 +28,7 @@ export class AccountRepository {
 
   async getAccountForAllCars(): Promise<Account[]> {
     try {
-      const test = await this.db.getClient().query(`
+      return await this.db.rows(`
         SELECT q1.day_of_week as "dayOfWeek", ((q1.count * 1.0) / (q2.total_count * 1.0)) * 100 as percent
         FROM
             (SELECT EXTRACT(ISODOW FROM day) as day_of_week, count(day) as count
@@ -39,7 +38,6 @@ export class AccountRepository {
         FROM car_booking, generate_series("startDate", "endDate", interval '1 day') AS day) as q2
         ORDER BY q1.day_of_week
       `);
-      return test.rows;
     } catch (err) {
       throw new DatabaseException();
     }

@@ -1,2 +1,2 @@
-export * from './isBeforeDate.constraint';
-export * from './isNotWeekend';
+export * from './is-before-date.constraint';
+export * from './is-not-weekend';

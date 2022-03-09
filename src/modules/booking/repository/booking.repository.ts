@@ -10,7 +10,7 @@ export class BookingRepository {
 
   public async bookCar(booking: BookCarRequestDto): Promise<void> {
     try {
-      await this.db.getClient().query(`
+      await this.db.sql(`
         INSERT INTO car_booking("autoId", "rateId", "startDate", "endDate")
         VALUES (${booking.autoId}, ${booking.rateId}, '${booking.startDate}', '${booking.endDate}')
       `);
@@ -21,14 +21,13 @@ export class BookingRepository {
 
   public async getLastBookingByAutoId( autoId: number ): Promise<CarBookingEntity> {
     try {
-      const res = await this.db.getClient().query(`
+      return await this.db.row(`
         SELECT "endDate"
         FROM car_booking
 		WHERE "autoId" = ${autoId}
 		ORDER BY "endDate" DESC
 		LIMIT 1
 	  `);
-      return res.rows[0];
     } catch (err) {
       throw new DatabaseException(err.message);
     }

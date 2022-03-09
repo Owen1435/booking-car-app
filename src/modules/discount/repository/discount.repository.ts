@@ -9,12 +9,11 @@ export class DiscountRepository {
 
   public async getDiscountByDays(days: number): Promise<DiscountEntity> {
     try {
-      const res = await this.db.getClient().query(`
+      return await this.db.row(`
         SELECT *
         FROM discount
         WHERE "fromDays" <= ${days} and "toDays" >= ${days}
       `);
-      return res.rows[0];
     } catch (err) {
       throw new DatabaseException(err.message);
     }
