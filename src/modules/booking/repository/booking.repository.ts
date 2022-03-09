@@ -11,7 +11,7 @@ export class BookingRepository {
   public async bookCar(booking: BookCarRequestDto): Promise<void> {
     try {
       await this.db.getClient().query(`
-        INSERT INTO car_booking(auto_id, rate_id, start_date, end_date)
+        INSERT INTO car_booking("autoId", "rateId", "startDate", "endDate")
         VALUES (${booking.autoId}, ${booking.rateId}, '${booking.startDate}', '${booking.endDate}')
       `);
     } catch (err) {
