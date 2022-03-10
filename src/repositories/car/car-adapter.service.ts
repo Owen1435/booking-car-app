@@ -14,13 +14,13 @@ export class CarAdapterService implements CarRepository {
 
     constructor(private repository: CarRepositoryImplementation) {}
 
-    async findOneById(id: string): Promise<Car> {
+    async findCarById(id: string): Promise<Car> {
         try {
             if (!id || !Number(id)) {
                 throw new Error('Is not valid Id');
             }
 
-            const car = await this.repository.findOneById(Number(id))
+            const car = await this.repository.findCarById(Number(id))
             return this.urtRead.car(car);
         } catch (err) {
             throw new DatabaseException(err.message);

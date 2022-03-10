@@ -1,5 +1,5 @@
 import { DiscountModel } from './interfaces/discount.model';
-import {DiscountDomain} from "../../../libs/discount/src/domain/discount-domain";
+import {DiscountDomain} from "@discount/domain/discount-domain";
 
 /** Маппер работы с базой данных */
 export class DiscountAdapterMapperReadService {

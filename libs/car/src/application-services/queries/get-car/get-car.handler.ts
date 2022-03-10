@@ -12,7 +12,7 @@ export class GetCarHandler implements ICommandHandler<GetCarQuery> {
 
     async execute(command: GetCarQuery): Promise<GetCarResponseDto> {
         const { carId } = command;
-        const car = await this.repository.findOneById(carId)
+        const car = await this.repository.findCarById(carId)
         if (!car) {
             throw new HttpException(`Car was not found`, HttpStatus.NOT_FOUND);
         }

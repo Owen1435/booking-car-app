@@ -6,7 +6,7 @@ import {CarModel} from "./interfaces/car.model";
 export class CarRepositoryImplementation{
   constructor(private db: DbClientService) {}
 
-  async findOneById(carId: number): Promise<CarModel> {
+  async findCarById(carId: number): Promise<CarModel> {
     return await this.db.row<CarModel>(`
         SELECT *
         FROM cars

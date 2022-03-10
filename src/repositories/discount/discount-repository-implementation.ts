@@ -6,7 +6,7 @@ import {DiscountModel} from "./interfaces/discount.model";
 export class DiscountRepositoryImplementation{
   constructor(private db: DbClientService) {}
 
-  async findOneByDays(days: number): Promise<DiscountModel> {
+  async findDiscountByDays(days: number): Promise<DiscountModel> {
     return await this.db.row(`
         SELECT *
         FROM discount
