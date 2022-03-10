@@ -2,13 +2,15 @@ import { DynamicModule, Module, OnModuleInit } from '@nestjs/common';
 import { CommandBus, CqrsModule, EventBus, QueryBus } from '@nestjs/cqrs';
 import { COMMAND_HANDLERS, QUERY_HANDLERS, EVENT_HANDLERS, PriceFacade } from './application-services';
 import {priceFacadeFactory, PriceRepository} from './providers';
-import {DiscountDomainModule} from "@discount/discount-domain.module";
-import {RateDomainModule} from "@rate/rate-domain.module";
+import {RateRepository} from "@rate/providers";
+import {DiscountRepository} from "@discount/providers";
 
 /** Провайдеры домена */
-interface DiscountModuleProviders {
+interface PriceModuleProviders {
     /** реализация репозитория */
     repository?: new (...arr: unknown[]) => PriceRepository;
+    rateRepository: new (...arr: unknown[]) => RateRepository;
+    discountRepository: new (...arr: unknown[]) => DiscountRepository;
 }
 
 /** Домен клиента */
@@ -16,15 +18,23 @@ interface DiscountModuleProviders {
 export class PriceDomainModule implements OnModuleInit {
     constructor(private queryBus: QueryBus, private commandBus: CommandBus, private eventBus: EventBus) {}
 
-    static forRoot(providers: DiscountModuleProviders): DynamicModule {
+    static forRoot(providers: PriceModuleProviders): DynamicModule {
         return {
             module: PriceDomainModule,
-            imports: [CqrsModule, DiscountDomainModule, RateDomainModule],
+            imports: [CqrsModule],
             providers: [
                 /** подключаем репозиторий */
                 {
                     provide: "PriceRepository",
                     useClass: providers.repository,
+                },
+                {
+                    provide: "RateRepository",
+                    useClass: providers.rateRepository,
+                },
+                {
+                    provide: "DiscountRepository",
+                    useClass: providers.discountRepository,
                 },
                 /** фасад бизнес правил */
                 {

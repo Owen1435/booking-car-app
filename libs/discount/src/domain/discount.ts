@@ -1,6 +1,6 @@
 export interface Discount {
     id: string;
-    rate: string;
+    rate: number;
     fromDays: number;
     toDays: number;
 }

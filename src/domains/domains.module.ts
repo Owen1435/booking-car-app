@@ -10,10 +10,19 @@ import {PriceDomainModule} from "@price/price-domain.module";
 @Global()
 @Module({
     imports: [
-        CarDomainModule.forRoot({ repository: CarAdapterService }),
-        DiscountDomainModule.forRoot({ repository: DiscountAdapterService }),
-        RateDomainModule.forRoot({ repository: RateAdapterService }),
-        PriceDomainModule.forRoot({}),
+        CarDomainModule.forRoot({
+            repository: CarAdapterService
+        }),
+        DiscountDomainModule.forRoot({
+            repository: DiscountAdapterService
+        }),
+        RateDomainModule.forRoot({
+            repository: RateAdapterService
+        }),
+        PriceDomainModule.forRoot({
+            rateRepository: RateAdapterService,
+            discountRepository: DiscountAdapterService
+        }),
     ],
     exports: [
         CarDomainModule,
