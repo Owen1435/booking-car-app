@@ -23,6 +23,12 @@
       ],
       "@car/*": [
         "libs/car/src/*"
+      ],
+      "@discount": [
+        "libs/car/src"
+      ],
+      "@discount/*": [
+        "libs/car/src/*"
       ]
     }
   }
