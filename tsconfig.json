@@ -25,10 +25,16 @@
         "libs/car/src/*"
       ],
       "@discount": [
-        "libs/car/src"
+        "libs/discount/src"
       ],
       "@discount/*": [
-        "libs/car/src/*"
+        "libs/discount/src/*"
+      ],
+      "@rate": [
+        "libs/rate/src"
+      ],
+      "@rate/*": [
+        "libs/rate/src/*"
       ]
     }
   }
