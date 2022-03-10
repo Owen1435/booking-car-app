@@ -26,7 +26,7 @@ export class BookCarRequestDto {
   endDate: string;
 
   @ApiProperty({
-    description: 'Rate id from db',
+    description: 'Price id from db',
     example: 1
   })
   @IsPositive()

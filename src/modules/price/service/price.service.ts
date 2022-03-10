@@ -24,7 +24,7 @@ export class PriceService {
 
     const rate = await this.rateRepository.getRateById(priceDto.rateId);
     if (!rate) {
-      throw new HttpException('Rate does not exist', 400);
+      throw new HttpException('Price does not exist', 400);
     }
 
     const price = days * rate.price * discountCoefficient;

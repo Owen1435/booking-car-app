@@ -35,6 +35,12 @@
       ],
       "@rate/*": [
         "libs/rate/src/*"
+      ],
+      "@price": [
+        "libs/price/src"
+      ],
+      "@price/*": [
+        "libs/price/src/*"
       ]
     }
   }
