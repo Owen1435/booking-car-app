@@ -39,6 +39,6 @@ export class DbClientService {
   }
 
   async sql(query: string): Promise<QueryResult> {
-    return await this.client.query(query);
+    return this.client.query(query);
   }
 }

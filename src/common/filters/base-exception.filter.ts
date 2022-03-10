@@ -12,6 +12,8 @@ export class BaseExceptionFilter<T extends HttpException> implements ExceptionFi
       path: request.url,
       statusCode: status,
       message: exception.message,
+      // @ts-ignore
+      description: exception.getResponse()?.error
     });
   }
 }
