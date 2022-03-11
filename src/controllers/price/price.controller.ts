@@ -16,6 +16,10 @@ export class PriceController {
     @UseFilters(new WrongDatesExceptionFilter(), new DatabaseExceptionFilter())
     @Post()
     public async calculatePrice( @Body() priceDto: CalculatePriceRequestDto ): Promise<CalculatePriceResponseDto> {
-        return await this.priceFacade.calculatePrice(priceDto);
+        return await this.priceFacade.calculatePrice({
+            startDate: priceDto.startDate,
+            endDate: priceDto.endDate,
+            rateId: priceDto.rateId.toString()
+        });
     }
 }
