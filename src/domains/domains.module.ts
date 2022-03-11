@@ -29,6 +29,7 @@ import {BookingCarAdapterService} from "../repositories/booking-car/booking-car-
             repository: BookingCarAdapterService,
         })
     ],
+
     exports: [
         CarDomainModule,
         DiscountDomainModule,

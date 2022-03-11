@@ -9,7 +9,12 @@ export class BookingCarRepositoryImplementation{
   async bookCar(bookingCar: BookingCarModel): Promise<void> {
     await this.db.sql(`
         INSERT INTO car_booking("carId", "rateId", "startDate", "endDate")
-        VALUES (${bookingCar.carId}, ${bookingCar.rateId}, '${bookingCar.startDate.toISOString()}', '${bookingCar.endDate.toISOString()}')
+        VALUES (
+                ${bookingCar.carId}, 
+                ${bookingCar.rateId}, 
+                '${bookingCar.startDate.toISOString()}', 
+                '${bookingCar.endDate.toISOString()}'
+        )
       `);
     return;
   }
