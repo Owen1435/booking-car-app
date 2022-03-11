@@ -41,6 +41,12 @@
       ],
       "@price/*": [
         "libs/price/src/*"
+      ],
+      "@booking-car": [
+        "libs/booking-car/src"
+      ],
+      "@booking-car/*": [
+        "libs/booking-car/src/*"
       ]
     }
   }

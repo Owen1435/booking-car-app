@@ -1,40 +1,33 @@
 import { DynamicModule, Module, OnModuleInit } from '@nestjs/common';
 import { CommandBus, CqrsModule, EventBus, QueryBus } from '@nestjs/cqrs';
-import { COMMAND_HANDLERS, QUERY_HANDLERS, EVENT_HANDLERS, PriceFacade } from './application-services';
-import {priceFacadeFactory} from './providers';
-import {RateRepository} from "@rate/providers";
-import {DiscountRepository} from "@discount/providers";
+import { COMMAND_HANDLERS, QUERY_HANDLERS, EVENT_HANDLERS, BookingCarFacade } from './application-services';
+import {bookingCarFacadeFactory, BookingCarRepository} from './providers';
 
 /** Провайдеры домена */
-interface PriceModuleProviders {
+interface BookingCarModuleProviders {
     /** реализация репозитория */
-    rateRepository: new (...arr: unknown[]) => RateRepository;
-    discountRepository: new (...arr: unknown[]) => DiscountRepository;
+    repository: new (...arr: unknown[]) => BookingCarRepository;
 }
 
 /** Домен клиента */
 @Module({})
-export class PriceDomainModule implements OnModuleInit {
+export class BookingCarDomainModule implements OnModuleInit {
     constructor(private queryBus: QueryBus, private commandBus: CommandBus, private eventBus: EventBus) {}
 
-    static forRoot(providers: PriceModuleProviders): DynamicModule {
+    static forRoot(providers: BookingCarModuleProviders): DynamicModule {
         return {
-            module: PriceDomainModule,
+            module: BookingCarDomainModule,
             imports: [CqrsModule],
             providers: [
                 /** подключаем репозиторий */
                 {
-                    provide: "RateRepository",
-                    useClass: providers.rateRepository,
-                },
-                {
-                    provide: "DiscountRepository",
-                    useClass: providers.discountRepository,
+                    provide: "BookingCarRepository",
+                    useClass: providers.repository,
                 },
                 /** фасад бизнес правил */
                 {
-                    provide: PriceFacade,
-                    useFactory: priceFacadeFactory,
+                    provide: BookingCarFacade,
+                    useFactory: bookingCarFacadeFactory,
                     inject: [CommandBus, QueryBus, EventBus],
                 },
                 /** подключаем CQRS */
@@ -47,7 +40,7 @@ export class PriceDomainModule implements OnModuleInit {
             ],
             exports: [
                 /** публикуем фасад */
-                PriceFacade,
+                BookingCarFacade,
             ],
         };
     }

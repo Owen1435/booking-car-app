@@ -21,11 +21,11 @@ CREATE TABLE "rate"
 CREATE TABLE "car_booking"
 (
 	"id"            serial PRIMARY KEY,
-	"autoId"       bigint NOT NULL,
+	"carId"       bigint NOT NULL,
 	"rateId"       bigint NOT NULL,
 	"startDate"    date NOT NULL,
 	"endDate"      date NOT NULL,
-	FOREIGN KEY ("autoId") REFERENCES "cars" ("id"),
+	FOREIGN KEY ("carId") REFERENCES "cars" ("id"),
 	FOREIGN KEY ("rateId") REFERENCES "rate" ("id")
 ) WITH ( OIDS = FALSE );
 
@@ -55,7 +55,7 @@ INSERT INTO cars("brand", "model", "licensePlate", "vin") VALUES
 ('chevrolet', 'camaro', '8DVBN987', '1N4FGH2355133660'),
 ('plymouth', 'barracuda', 'AX25780', '2G1FP22G922147195'),
 ('nissan', 'skyline', 'DJY5518', 'WAUDF78E86A074839');
-INSERT INTO car_booking("autoId", "rateId", "startDate", "endDate") VALUES
+INSERT INTO car_booking("carId", "rateId", "startDate", "endDate") VALUES
 (1, 1, '2021-06-14', '2021-06-21'),
 (2, 2, '2021-06-07', '2021-06-28'),
 (3, 3, '2021-08-09', '2021-08-13'),

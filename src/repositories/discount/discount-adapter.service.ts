@@ -9,7 +9,7 @@ import {DiscountRepositoryImplementation} from "./discount-repository-implementa
 @Injectable()
 export class DiscountAdapterService implements DiscountRepository {
     private readonly urtRead = new DiscountAdapterMapperReadService();
-    // private readonly urtWrite = new CarAdapterMapperWriteService();
+    // private readonly urtWrite = new BookingCarAdapterMapperWriteService();
 
     constructor(private repository: DiscountRepositoryImplementation) {}
 

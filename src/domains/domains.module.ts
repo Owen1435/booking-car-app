@@ -6,6 +6,8 @@ import {CarAdapterService} from "../repositories/car/car-adapter.service";
 import {DiscountAdapterService} from "../repositories/discount/discount-adapter.service";
 import {RateAdapterService} from "../repositories/rate/rate-adapter.service";
 import {PriceDomainModule} from "@price/price-domain.module";
+import {BookingCarDomainModule} from "@booking-car/booking-car-domain.module";
+import {BookingCarAdapterService} from "../repositories/booking-car/booking-car-adapter.service";
 
 @Global()
 @Module({
@@ -23,12 +25,16 @@ import {PriceDomainModule} from "@price/price-domain.module";
             rateRepository: RateAdapterService,
             discountRepository: DiscountAdapterService
         }),
+        BookingCarDomainModule.forRoot({
+            repository: BookingCarAdapterService,
+        })
     ],
     exports: [
         CarDomainModule,
         DiscountDomainModule,
         RateDomainModule,
-        PriceDomainModule
+        PriceDomainModule,
+        BookingCarDomainModule
     ],
 })
 export class DomainsModule {}

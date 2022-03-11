@@ -1,6 +1,7 @@
 import {ApiProperty} from "@nestjs/swagger";
 import {IsDateString, IsInt, IsNotEmpty, IsPositive, Validate} from "class-validator";
 import {IsBeforeDateConstraint} from "../../../../common/constraint";
+import {IsValidDateIntervalConstraint} from "../../../../common/constraint/is-valid-date-interval.constraint";
 
 export class CalculatePriceRequestDto {
   @ApiProperty({
@@ -16,6 +17,7 @@ export class CalculatePriceRequestDto {
     description: 'Date when rent will be end',
     example: '2022-03-15'
   })
+  @Validate(IsValidDateIntervalConstraint, ['startDate'])
   @IsNotEmpty()
   @IsDateString()
   endDate: string;

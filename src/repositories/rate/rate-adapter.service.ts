@@ -9,7 +9,7 @@ import {RateAdapterMapperReadService} from "./rate-adapter-mapper-read.service";
 @Injectable()
 export class RateAdapterService implements RateRepository {
     private readonly urtRead = new RateAdapterMapperReadService();
-    // private readonly urtWrite = new CarAdapterMapperWriteService();
+    // private readonly urtWrite = new BookingCarAdapterMapperWriteService();
 
     constructor(private repository: RateRepositoryImplementation) {}
 
