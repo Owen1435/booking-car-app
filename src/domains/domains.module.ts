@@ -34,6 +34,7 @@ import {AccountAdapterService} from "../repositories/account/account-adapter.ser
         }),
         AccountDomainModule.forRoot({
             repository: AccountAdapterService,
+            carRepository: CarAdapterService
         }),
     ],
 

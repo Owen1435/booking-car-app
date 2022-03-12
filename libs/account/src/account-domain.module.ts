@@ -2,11 +2,13 @@ import { DynamicModule, Module, OnModuleInit } from '@nestjs/common';
 import { CommandBus, CqrsModule, EventBus, QueryBus } from '@nestjs/cqrs';
 import { COMMAND_HANDLERS, QUERY_HANDLERS, EVENT_HANDLERS, AccountFacade } from './application-services';
 import {accountFacadeFactory, AccountRepository} from './providers';
+import {CarRepository} from "@car/providers";
 
 /** Провайдеры домена */
 interface AccountModuleProviders {
     /** реализация репозитория */
     repository: new (...arr: unknown[]) => AccountRepository;
+    carRepository: new (...arr: unknown[]) => CarRepository;
 }
 
 /** Домен клиента */
@@ -23,6 +25,10 @@ export class AccountDomainModule implements OnModuleInit {
                 {
                     provide: "AccountRepository",
                     useClass: providers.repository,
+                },
+                {
+                    provide: "CarRepository",
+                    useClass: providers.carRepository,
                 },
                 /** фасад бизнес правил */
                 {
