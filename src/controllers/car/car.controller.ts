@@ -1,11 +1,12 @@
 import {Controller, Get, Param} from '@nestjs/common';
-import {GetCarResponseDto} from "../../modules/cars/dto/response/get-car-response.dto";
 import {CarFacade} from "@car/application-services";
-import {ApiBadRequestResponse, ApiOperation, ApiResponse} from "@nestjs/swagger";
+import {ApiBadRequestResponse, ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
 import {UseFilters} from "@nestjs/common/decorators";
 import {DatabaseExceptionFilter, WrongDatesExceptionFilter} from "../../common/filters";
+import { GetCarResponseDto } from './dto/get-car-response.dto';
 
-@Controller('cars-new')
+@ApiTags('cars')
+@Controller('cars')
 export class CarController {
     constructor(private carFacade: CarFacade) {}
 

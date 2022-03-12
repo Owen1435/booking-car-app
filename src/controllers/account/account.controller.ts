@@ -6,8 +6,8 @@ import {AccountFacade} from "@account/application-services";
 import {GetAccountForAllCarsResponseDto} from "./dto/get-account-for-all-cars.response.dto";
 import { GetAccountForCarResponseDto } from './dto/get-account-for-car.response.dto';
 
-@ApiTags('account-ddd')
-@Controller('account-ddd')
+@ApiTags('account')
+@Controller('account')
 export class AccountController {
   constructor(private readonly accountFacade: AccountFacade) {}
 

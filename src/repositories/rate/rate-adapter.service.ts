@@ -1,15 +1,14 @@
 import {Injectable} from '@nestjs/common';
-import {DatabaseException} from "../../common/exeptions";
 import {RateRepository} from "@rate/providers";
 import { Rate } from '@rate/domain/rate';
 import {RateRepositoryImplementation} from "./rate-repository-implementation";
 import {RateAdapterMapperReadService} from "./rate-adapter-mapper-read.service";
+import { DatabaseException } from '@common/exeptions';
 
 /** адаптер работы с базой данных */
 @Injectable()
 export class RateAdapterService implements RateRepository {
     private readonly urtRead = new RateAdapterMapperReadService();
-    // private readonly urtWrite = new BookingCarAdapterMapperWriteService();
 
     constructor(private repository: RateRepositoryImplementation) {}
 

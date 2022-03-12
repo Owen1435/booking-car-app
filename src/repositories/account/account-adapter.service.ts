@@ -1,6 +1,5 @@
 import {Injectable} from '@nestjs/common';
 import {AccountRepository} from "@account/providers";
-import {DatabaseException} from "../../common/exeptions";
 import {AccountRepositoryImplementation} from "./account-repository-implementation";
 import {
     GetAccountForCarResponseDto
@@ -8,7 +7,8 @@ import {
 import {
     GetAccountForAllCarsResponseDto
 } from "@account/application-services/queries/get-account-for-all-cars/get-account-for-all-cars.response.dto";
-import {DayOfWeek} from "../../modules/account/enum/day-of-week.enum";
+import { DayOfWeek } from 'libs/common/src/enum/day-of-week.enum';
+import { DatabaseException } from '@common/exeptions';
 
 /** адаптер работы с базой данных */
 @Injectable()

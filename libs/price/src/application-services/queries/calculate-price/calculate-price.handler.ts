@@ -25,7 +25,7 @@ export class CalculatePriceHandler implements ICommandHandler<CalculatePriceQuer
 
         const rate = await this.rateRepository.findRateById(rateId);
         if (!rate) {
-            throw new HttpException('Rate does not exist', 400);
+            throw new HttpException('Rate does not exist', 404);
         }
 
         const price = days * rate.price * discountCoefficient;

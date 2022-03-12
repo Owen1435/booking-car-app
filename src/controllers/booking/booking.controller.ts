@@ -1,11 +1,12 @@
 import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
-import {ApiBadRequestResponse, ApiOperation, ApiResponse} from "@nestjs/swagger";
+import {ApiBadRequestResponse, ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
 import { UseFilters } from '@nestjs/common/decorators';
 import { DatabaseExceptionFilter, WrongDatesExceptionFilter } from 'src/common/filters';
 import {BookingCarFacade} from "@booking-car/application-services";
 import { BookCarRequestDto } from './dto/book-car-request.dto';
 
-@Controller('booking-new')
+@ApiTags('booking')
+@Controller('booking')
 export class BookingController {
   constructor(private readonly bookingCarFacade: BookingCarFacade) {}
 

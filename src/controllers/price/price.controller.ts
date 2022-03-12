@@ -1,12 +1,13 @@
 import {Body, Controller, Post} from '@nestjs/common';
-import {ApiBadRequestResponse, ApiOperation, ApiResponse} from "@nestjs/swagger";
+import {ApiBadRequestResponse, ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
 import {UseFilters} from "@nestjs/common/decorators";
 import {DatabaseExceptionFilter, WrongDatesExceptionFilter} from "../../common/filters";
 import {PriceFacade} from "@price/application-services";
-import {CalculatePriceResponseDto} from "../../modules/price/dto/response/calculate-price-response.dto";
 import { CalculatePriceRequestDto } from './dto/calculate-price-request.dto';
+import {CalculatePriceResponseDto} from "./dto/calculate-price-response.dto";
 
-@Controller('price-new')
+@ApiTags('price')
+@Controller('price')
 export class PriceController {
     constructor(private priceFacade: PriceFacade) {}
 

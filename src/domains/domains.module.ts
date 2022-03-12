@@ -29,6 +29,8 @@ import {AccountAdapterService} from "../repositories/account/account-adapter.ser
         }),
         BookingCarDomainModule.forRoot({
             repository: BookingCarAdapterService,
+            rateRepository: RateAdapterService,
+            carRepository: CarAdapterService
         }),
         AccountDomainModule.forRoot({
             repository: AccountAdapterService,

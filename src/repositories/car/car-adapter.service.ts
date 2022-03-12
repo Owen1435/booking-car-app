@@ -3,8 +3,8 @@ import {CarRepository} from "@car/providers";
 import {Car} from "@car/domain/car";
 import {CarAdapterMapperReadService} from "./car-adapter-mapper-read.service";
 import {CarAdapterMapperWriteService} from './car-adapter-mapper-write.service';
-import {DatabaseException} from "../../common/exeptions";
 import {CarRepositoryImplementation} from "./car-repository-implementation";
+import { DatabaseException } from '@common/exeptions';
 
 /** адаптер работы с базой данных */
 @Injectable()

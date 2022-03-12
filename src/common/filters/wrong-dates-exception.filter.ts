@@ -1,5 +1,5 @@
 import { Catch } from '@nestjs/common';
-import { WrongDatesException } from '../exeptions';
+import { WrongDatesException } from '@common/exeptions';
 import { BaseExceptionFilter } from './base-exception.filter';
 
 @Catch(WrongDatesException)

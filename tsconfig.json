@@ -53,6 +53,12 @@
       ],
       "@account/*": [
         "libs/account/src/*"
+      ],
+      "@common": [
+        "libs/common/src"
+      ],
+      "@common/*": [
+        "libs/common/src/*"
       ]
     }
   }
