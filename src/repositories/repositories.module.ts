@@ -4,13 +4,15 @@ import { DbClientServiceModule } from "../common/db-client/db-client.service.mod
 import { DiscountAdapterModule } from "./discount/discount-adapter.module";
 import {RateAdapterModule} from "./rate/rate-adapter.module";
 import {BookingCarAdapterModule} from "./booking-car/booking-car-adapter.module";
+import {AccountAdapterModule} from "./account/account-adapter.module";
 
 /** Модули в репозитории */
 const REPOSITORY_MODULES = [
     CarAdapterModule,
     BookingCarAdapterModule,
     DiscountAdapterModule,
-    RateAdapterModule
+    RateAdapterModule,
+    AccountAdapterModule
 ];
 
 /** репозитории приложения */

@@ -41,5 +41,5 @@ export class BookCarRequestDto {
   @IsPositive()
   @IsInt()
   @IsNotEmpty()
-  autoId: number;
+  carId: number;
 }

@@ -1,12 +1,10 @@
 import { ICommandHandler, QueryHandler } from '@nestjs/cqrs';
-import {HttpException, Inject } from '@nestjs/common';
+import { HttpException, Inject } from '@nestjs/common';
 import { CalculatePriceQuery } from "@price/application-services/queries/calculate-price/calculate-price.query";
 import { CalculatePriceResponseDto } from "@price/application-services/queries/calculate-price/calculate-price.response.dto";
 import { RateRepository } from "@rate/providers";
 import { DiscountRepository } from '@discount/providers';
 import { MILLISECONDS_IN_DAY } from 'src/common/constants';
-import {CarDomainService} from "@car/domain-services/car-domain.service";
-import {PriceDomainService} from "@price/domain-services/price-domain.service";
 
 @QueryHandler(CalculatePriceQuery)
 export class CalculatePriceHandler implements ICommandHandler<CalculatePriceQuery> {

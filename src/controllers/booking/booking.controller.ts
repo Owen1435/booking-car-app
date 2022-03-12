@@ -17,7 +17,7 @@ export class BookingController {
   @Post()
   async bookCar(@Body() bookingDto: BookCarRequestDto): Promise<string> {
     await this.bookingCarFacade.bookCar(
-        bookingDto.autoId.toString(),
+        bookingDto.carId.toString(),
         bookingDto.rateId.toString(),
         bookingDto.startDate,
         bookingDto.endDate

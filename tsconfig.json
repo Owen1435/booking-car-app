@@ -47,6 +47,12 @@
       ],
       "@booking-car/*": [
         "libs/booking-car/src/*"
+      ],
+      "@account": [
+        "libs/account/src"
+      ],
+      "@account/*": [
+        "libs/account/src/*"
       ]
     }
   }
