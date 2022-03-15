@@ -20,7 +20,7 @@ export class GetReportForCarHandler
 
     const car = await this.carRepository.findCarById(carId);
     if (!car) {
-      throw new EntityNotFoundException('Car has been not found');
+      throw new EntityNotFoundException('Car');
     }
 
     return await this.accountRepository.getReportForCar(carId);

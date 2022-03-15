@@ -20,7 +20,7 @@ export class BookingCarRepositoryImplementation{
   }
 
   async getLastBookingByAutoId(carId: number): Promise<BookingCarModel> {
-    return await this.db.row(`
+    return this.db.row(`
         SELECT *
         FROM car_booking
 		WHERE "carId" = ${carId}

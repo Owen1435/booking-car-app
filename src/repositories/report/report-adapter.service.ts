@@ -14,7 +14,7 @@ export class ReportAdapterService implements ReportRepository {
 
     async getReportForCar(carId: number): Promise<GetReportForCarResponseDto> {
         try {
-            const accounts = await this.repository.getReportForCar(Number(carId))
+            const accounts = await this.repository.getReportForCar(carId)
             return {
                 carId,
                 data: accounts.map(account => { return {
