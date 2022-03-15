@@ -18,6 +18,12 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "paths": {
+      "@common": [
+        "libs/common/src"
+      ],
+      "@common/*": [
+        "libs/common/src/*"
+      ],
       "@car": [
         "libs/car/src"
       ],
@@ -48,17 +54,11 @@
       "@booking-car/*": [
         "libs/booking-car/src/*"
       ],
-      "@account": [
-        "libs/account/src"
+      "@report": [
+        "libs/report/src"
       ],
-      "@account/*": [
-        "libs/account/src/*"
-      ],
-      "@common": [
-        "libs/common/src"
-      ],
-      "@common/*": [
-        "libs/common/src/*"
+      "@report/*": [
+        "libs/report/src/*"
       ]
     }
   }

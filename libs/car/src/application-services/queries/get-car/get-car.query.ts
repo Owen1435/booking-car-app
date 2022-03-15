@@ -1,3 +1,3 @@
 export class GetCarQuery {
-    constructor(public readonly carId: string) {}
+  constructor(public readonly carId: number) {}
 }

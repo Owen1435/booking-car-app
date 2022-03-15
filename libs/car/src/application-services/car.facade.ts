@@ -6,13 +6,17 @@ import { GetCarQuery } from './queries/get-car/get-car.query';
 /** класс-фасад */
 @Injectable()
 export class CarFacade {
-    constructor(private commandBus: CommandBus, private queryBus: QueryBus, private eventBus: EventBus) {}
+  constructor(
+    private commandBus: CommandBus,
+    private queryBus: QueryBus,
+    private eventBus: EventBus,
+  ) {}
 
-    async getCar(carId: string) {
-        return this.queryBus.execute(new GetCarQuery(carId));
-    }
+  async getCar(carId: number) {
+    return this.queryBus.execute(new GetCarQuery(carId));
+  }
 
-    async getAllCars() {
-        return this.queryBus.execute(new GetAllCarsQuery());
-    }
+  async getAllCars() {
+    return this.queryBus.execute(new GetAllCarsQuery());
+  }
 }

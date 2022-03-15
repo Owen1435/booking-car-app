@@ -1,9 +1,9 @@
 import {BookingCar} from "./booking-car";
 
 export class BookingCarDomain implements BookingCar {
-    id: string = Date.now().toString();
-    carId: string = null;
-    rateId: string = null;
+    id: number = Date.now();
+    carId: number = null;
+    rateId: number = null;
     startDate: Date = null;
     endDate: Date = null;
 

@@ -7,9 +7,9 @@ export class BookingCarAdapterMapperReadService {
     public bookingCar = (bookingCar: BookingCarModel): BookingCarDomain =>
         !!bookingCar
             ? {
-                id: bookingCar.id.toString(),
-                carId: bookingCar.carId.toString(),
-                rateId: bookingCar.rateId.toString(),
+                id: bookingCar.id,
+                carId: bookingCar.carId,
+                rateId: bookingCar.rateId,
                 startDate: bookingCar.startDate,
                 endDate: bookingCar.endDate,
             }

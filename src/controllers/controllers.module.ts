@@ -2,14 +2,14 @@ import { Module } from '@nestjs/common';
 import {CarController} from "./car/car.controller";
 import {PriceController} from "./price/price.controller";
 import {BookingController} from "./booking/booking.controller";
-import {AccountController} from "./account/account.controller";
+import {ReportController} from "./report/report.controller";
 
 @Module({
     controllers: [
         CarController,
         PriceController,
         BookingController,
-        AccountController
+        ReportController
     ],
 })
 export class ControllersModule {}

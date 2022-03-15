@@ -1,10 +1,10 @@
+import { MILLISECONDS_IN_DAY } from '@common/constants';
+import { MAX_BOOKING_DAYS } from '@common/constants';
 import {
   ValidationArguments,
   ValidatorConstraint,
   ValidatorConstraintInterface,
 } from 'class-validator';
-import {MILLISECONDS_IN_DAY} from "../constants";
-import {MAX_BOOKING_DAYS} from "../constants/busines-logic.constant";
 
 @ValidatorConstraint({ name: 'isBeforeDate', async: false })
 export class IsValidDateIntervalConstraint implements ValidatorConstraintInterface {

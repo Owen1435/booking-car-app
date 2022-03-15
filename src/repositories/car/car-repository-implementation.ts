@@ -7,7 +7,7 @@ export class CarRepositoryImplementation{
   constructor(private db: DbClientService) {}
 
   async findCarById(carId: number): Promise<CarModel> {
-    return await this.db.row<CarModel>(`
+    return this.db.row<CarModel>(`
         SELECT *
         FROM cars
         WHERE id = ${carId}
@@ -15,7 +15,7 @@ export class CarRepositoryImplementation{
   }
 
   async findAll(): Promise<CarModel[]> {
-    return await this.db.rows<CarModel>(`
+    return this.db.rows<CarModel>(`
         SELECT *
         FROM cars
       `);

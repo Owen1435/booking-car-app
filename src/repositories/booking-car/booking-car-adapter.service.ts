@@ -16,12 +16,6 @@ export class BookingCarAdapterService implements BookingCarRepository {
 
     async bookCar(bookingCar: BookingCar): Promise<void> {
         try {
-            if (!Number(bookingCar.carId)) {
-                throw new Error('Is not valid car Id');
-            }
-            if (!Number(bookingCar.rateId)) {
-                throw new Error('Is not valid rate Id');
-            }
             const bookingCarModel = this.urtWrite.bookingCarModel(bookingCar);
             await this.repository.bookCar(bookingCarModel)
             return;
@@ -30,13 +24,9 @@ export class BookingCarAdapterService implements BookingCarRepository {
         }
     }
 
-    async getLastBookingByCarId(carId: string): Promise<BookingCar> {
+    async getLastBookingByCarId(carId: number): Promise<BookingCar> {
         try {
-            if (!Number(carId)) {
-                throw new Error('Is not valid car Id');
-            }
-
-            const booking = await this.repository.getLastBookingByAutoId(Number(carId))
+            const booking = await this.repository.getLastBookingByAutoId(carId)
             return this.urtRead.bookingCar(booking);
         } catch (err) {
             throw new DatabaseException(err.message);

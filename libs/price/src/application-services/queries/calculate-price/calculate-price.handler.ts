@@ -1,10 +1,11 @@
 import { ICommandHandler, QueryHandler } from '@nestjs/cqrs';
-import { HttpException, Inject } from '@nestjs/common';
+import { Inject } from '@nestjs/common';
 import { CalculatePriceQuery } from "@price/application-services/queries/calculate-price/calculate-price.query";
 import { CalculatePriceResponseDto } from "@price/application-services/queries/calculate-price/calculate-price.response.dto";
 import { RateRepository } from "@rate/providers";
 import { DiscountRepository } from '@discount/providers';
-import { MILLISECONDS_IN_DAY } from 'src/common/constants';
+import { EntityNotFoundException } from "@common/exeptions";
+import { MILLISECONDS_IN_DAY } from "@common/constants";
 
 @QueryHandler(CalculatePriceQuery)
 export class CalculatePriceHandler implements ICommandHandler<CalculatePriceQuery> {
@@ -25,7 +26,7 @@ export class CalculatePriceHandler implements ICommandHandler<CalculatePriceQuer
 
         const rate = await this.rateRepository.findRateById(rateId);
         if (!rate) {
-            throw new HttpException('Rate does not exist', 404);
+            throw new EntityNotFoundException('Rate')
         }
 
         const price = days * rate.price * discountCoefficient;

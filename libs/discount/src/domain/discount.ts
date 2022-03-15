@@ -1,5 +1,5 @@
 export interface Discount {
-    id: string;
+    id: number;
     rate: number;
     fromDays: number;
     toDays: number;

@@ -7,7 +7,7 @@ export class DiscountAdapterMapperReadService {
     public discount = (discount: DiscountModel): DiscountDomain =>
         !!discount
             ? {
-                id: discount.id.toString(),
+                id: discount.id,
                 rate: discount.rate ?? null,
                 fromDays: discount.fromDays ?? null,
                 toDays: discount.toDays ?? null

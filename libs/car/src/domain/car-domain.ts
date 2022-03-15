@@ -1,7 +1,7 @@
 import {Car} from "./car";
 
 export class CarDomain implements Car {
-    id: string = Date.now().toString();
+    id: number = Date.now();
     brand: string = null;
     model: string = null;
     licensePlate: string = null;

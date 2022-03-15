@@ -1,7 +1,7 @@
 export interface BookingCar {
-    id: string;
-    carId: string;
-    rateId: string;
+    id: number;
+    carId: number;
+    rateId: number;
     startDate: Date;
     endDate: Date;
 }

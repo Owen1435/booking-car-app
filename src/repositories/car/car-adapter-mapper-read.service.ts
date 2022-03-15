@@ -8,7 +8,7 @@ export class CarAdapterMapperReadService {
     public car = (car: CarModel): CarDomain =>
         !!car
             ? {
-                id: car.id.toString(),
+                id: car.id,
                 brand: car.brand ?? null,
                 model: car.model ?? null,
                 licensePlate: car.licensePlate ?? null,

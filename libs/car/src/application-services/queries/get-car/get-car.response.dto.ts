@@ -1,9 +1,9 @@
-import { Car } from "@car/domain/car";
+import { Car } from '@car/domain/car';
 
 export class GetCarResponseDto implements Car {
-    id: string;
-    brand: string;
-    model: string;
-    licensePlate: string;
-    vin: string;
+  id: number;
+  brand: string;
+  model: string;
+  licensePlate: string;
+  vin: string;
 }

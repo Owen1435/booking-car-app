@@ -1,10 +1,10 @@
 import {Body, Controller, Post} from '@nestjs/common';
 import {ApiBadRequestResponse, ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
 import {UseFilters} from "@nestjs/common/decorators";
-import {DatabaseExceptionFilter, WrongDatesExceptionFilter} from "../../common/filters";
 import {PriceFacade} from "@price/application-services";
 import { CalculatePriceRequestDto } from './dto/calculate-price-request.dto';
 import {CalculatePriceResponseDto} from "./dto/calculate-price-response.dto";
+import { DatabaseExceptionFilter, WrongDatesExceptionFilter } from '@common/filters';
 
 @ApiTags('price')
 @Controller('price')
@@ -20,7 +20,7 @@ export class PriceController {
         return await this.priceFacade.calculatePrice({
             startDate: priceDto.startDate,
             endDate: priceDto.endDate,
-            rateId: priceDto.rateId.toString()
+            rateId: priceDto.rateId
         });
     }
 }

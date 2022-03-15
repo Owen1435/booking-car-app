@@ -12,13 +12,9 @@ export class RateAdapterService implements RateRepository {
 
     constructor(private repository: RateRepositoryImplementation) {}
 
-    async findRateById(id: string): Promise<Rate> {
+    async findRateById(id: number): Promise<Rate> {
         try {
-            if (!id || !Number(id)) {
-                throw new Error('Is not valid Id');
-            }
-
-            const rate = await this.repository.findRateById(Number(id))
+            const rate = await this.repository.findRateById(id)
             return this.urtRead.rate(rate);
         } catch (err) {
             throw new DatabaseException(err.message);

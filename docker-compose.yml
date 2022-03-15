@@ -16,6 +16,7 @@ services:
 #    depends_on:
 #      - postgresql
 #    restart: always
+
   postgresql:
     container_name: postgres
     image: postgres:12
@@ -30,5 +31,5 @@ services:
       POSTGRES_USER: $POSTGRES_USER
       POSTGRES_PASSWORD: $POSTGRES_PASSWORD
     volumes:
-#      - ./postgres-data:/var/lib/postgresql/data
+      - ./postgres-data:/var/lib/postgresql/data
       - ./create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql

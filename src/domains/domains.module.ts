@@ -8,8 +8,8 @@ import {RateAdapterService} from "../repositories/rate/rate-adapter.service";
 import {PriceDomainModule} from "@price/price-domain.module";
 import {BookingCarDomainModule} from "@booking-car/booking-car-domain.module";
 import {BookingCarAdapterService} from "../repositories/booking-car/booking-car-adapter.service";
-import {AccountDomainModule} from "@account/account-domain.module";
-import {AccountAdapterService} from "../repositories/account/account-adapter.service";
+import {ReportDomainModule} from "@report/report-domain.module";
+import {ReportAdapterService} from "../repositories/report/report-adapter.service";
 
 @Global()
 @Module({
@@ -32,8 +32,8 @@ import {AccountAdapterService} from "../repositories/account/account-adapter.ser
             rateRepository: RateAdapterService,
             carRepository: CarAdapterService
         }),
-        AccountDomainModule.forRoot({
-            repository: AccountAdapterService,
+        ReportDomainModule.forRoot({
+            repository: ReportAdapterService,
             carRepository: CarAdapterService
         }),
     ],
@@ -44,7 +44,7 @@ import {AccountAdapterService} from "../repositories/account/account-adapter.ser
         RateDomainModule,
         PriceDomainModule,
         BookingCarDomainModule,
-        AccountDomainModule
+        ReportDomainModule
     ],
 })
 export class DomainsModule {}
