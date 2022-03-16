@@ -7,7 +7,7 @@ export class RateRepositoryImplementation{
   constructor(private db: DbClientService) {}
 
   async findRateById(rateId: number): Promise<RateModel> {
-    return await this.db.row(`
+    return this.db.row(`
         SELECT * 
         FROM rate 
         WHERE id=${rateId}

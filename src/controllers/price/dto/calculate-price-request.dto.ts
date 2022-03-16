@@ -6,7 +6,7 @@ import {IsValidDateIntervalConstraint} from "../../../common/constraint/is-valid
 export class CalculatePriceRequestDto {
   @ApiProperty({
     description: 'Date when rent will be start',
-    example: '2021-03-05'
+    example: '2022-03-05'
   })
   @IsNotEmpty()
   @Validate(IsBeforeDateConstraint, ['endDate'])

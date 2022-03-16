@@ -7,7 +7,7 @@ export class DiscountRepositoryImplementation{
   constructor(private db: DbClientService) {}
 
   async findDiscountByDays(days: number): Promise<DiscountModel> {
-    return await this.db.row(`
+    return this.db.row(`
         SELECT *
         FROM discount
         WHERE "fromDays" <= ${days} and "toDays" >= ${days}

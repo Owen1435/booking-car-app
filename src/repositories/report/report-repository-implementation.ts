@@ -8,7 +8,7 @@ export class ReportRepositoryImplementation {
   constructor(private db: DbClientService) {}
 
   async getReportForCar(carId: number): Promise<ReportForCarModel[]> {
-    return await this.db.rows<ReportForCarModel>(`
+    return this.db.rows<ReportForCarModel>(`
         SELECT q1.day_of_week as "dayOfWeek", ((q1.count * 1.0) / (q2.total_count * 1.0)) * 100 as percent
         FROM
           (SELECT EXTRACT(ISODOW FROM day) as day_of_week, count(day) as count
@@ -23,7 +23,7 @@ export class ReportRepositoryImplementation {
   }
 
   async getReportForAllCars(): Promise<ReportForAllCarsModel[]> {
-    return await this.db.rows<ReportForAllCarsModel>(`
+    return this.db.rows<ReportForAllCarsModel>(`
         SELECT q1.day_of_week as "dayOfWeek", ((q1.count * 1.0) / (q2.total_count * 1.0)) * 100 as percent
         FROM
             (SELECT EXTRACT(ISODOW FROM day) as day_of_week, count(day) as count
